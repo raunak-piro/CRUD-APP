@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+{% block title %}
+	<title>Crud App | Home</title>
+{% endblock %}
+</head>
+<body>
+	<div class="main">
+<div class="center">
+{% block content %}
+<h1>Employee  Record Table</h1>
+
+<a href="/add/" id="btn">Add Employee</a>
+
+<form method="POST" class="search">
+	{% csrf_token %}
+	<input type="search" placeholder="Search Something" name="search">
+	<button type="submit">Search</button>
+</form>
+
+<table class="table">
+<tr>
+	<th>Name</th>
+	<th>email</th>
+	<th>phone</th>
+	<th>salary</th>
+	<th>city</th>
+	<th>state</th>
+</tr>
+
+{% for item in data %}
+<tr>
+	<td>{{item.name}}</td>
+	<td>{{item.email}}</td>
+	<td>{{item.phone}}</td>
+	<td>{{item.salary}}</td>
+	<td>{{item.city}}</td>
+	<td>{{item.state}}</td>
+	<td><a href="/update/{{item.id}}" ><span class="material-symbols-outlined">
+edit
+</span></a></td>
+	<td><a href="#"  onclick="fun('{{item.id}}')"><span class="material-symbols-outlined">
+delete
+</span></a></td>
+
+</tr>
+{% endfor %}
+</table>
+   <script>
+                function fun(id){
+                    if(confirm("Are Your Sure to Delete that Item : "))
+                    window.open("http://localhost:8000/delete/"+id)
+                }
+            </script>
+         
+{% endblock %}
+</div></div>
+</body>
+
+</html>

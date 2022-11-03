@@ -1,0 +1,26 @@
+{% extends "index.html" %}
+{% load static %}
+{% block title %}
+	<title>crud | update</title>
+{% endblock %}
+{% block content %}
+	<h1>Update Record</h1>
+	<a href="/" id="btn">Home</a>
+<form method="POST" class="mainform">
+	{% csrf_token %}
+
+	<label>Name</label>
+	<input type="text" placeholder="Enter Name" name="name" value={{data.name}}><br>
+	<label>Email</label>
+	<input type="text" placeholder="Enter Email" name="email" value={{data.email}}><br>
+	<label>Phone</label>
+	<input type="text" placeholder="Enter Phone" name="phone" value={{data.phone}}><br>
+	<label>Salary</label>
+	<input type="text" placeholder="Enter Salary" name="salary" value={{data.salary}}><br>
+	<label>City</label>
+	<input type="text" placeholder="Enter City" name="city" value={{data.city}}><br>
+	<label>State</label>
+	<input type="text" placeholder="Enter State" name="state" value={{data.state}}><br>
+	<button type="submit" >Update</button>
+</form>
+{% endblock %}
